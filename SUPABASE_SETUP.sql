@@ -40,6 +40,11 @@ ALTER TABLE public.secrets ENABLE ROW LEVEL SECURITY;
 -- ===============================================
 -- Row Level Security Policies for user_profiles
 -- ===============================================
+-- Drop existing policies if they exist, then recreate them
+DROP POLICY IF EXISTS "Users can view own profile" ON public.user_profiles;
+DROP POLICY IF EXISTS "Users can update own profile" ON public.user_profiles;
+DROP POLICY IF EXISTS "Users can insert own profile" ON public.user_profiles;
+
 -- Users can only see and modify their own profile
 CREATE POLICY "Users can view own profile" ON public.user_profiles
     FOR SELECT USING (auth.uid() = id);
@@ -53,6 +58,12 @@ CREATE POLICY "Users can insert own profile" ON public.user_profiles
 -- ===============================================
 -- Row Level Security Policies for secrets
 -- ===============================================
+-- Drop existing policies if they exist, then recreate them
+DROP POLICY IF EXISTS "Users can view own secrets" ON public.secrets;
+DROP POLICY IF EXISTS "Users can create own secrets" ON public.secrets;
+DROP POLICY IF EXISTS "Users can update own secrets" ON public.secrets;
+DROP POLICY IF EXISTS "Users can delete own secrets" ON public.secrets;
+
 -- Users can only see and modify their own secrets
 CREATE POLICY "Users can view own secrets" ON public.secrets
     FOR SELECT USING (auth.uid() = user_id);
@@ -99,6 +110,9 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Triggers to automatically update updated_at
+DROP TRIGGER IF EXISTS update_user_profiles_updated_at ON public.user_profiles;
+DROP TRIGGER IF EXISTS update_secrets_updated_at ON public.secrets;
+
 CREATE TRIGGER update_user_profiles_updated_at
     BEFORE UPDATE ON public.user_profiles
     FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
