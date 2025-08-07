@@ -5,6 +5,7 @@ C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Core\obj\Debug\net8.0\V
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Core\obj\Debug\net8.0\Vault.Core.AssemblyInfoInputs.cache
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Core\obj\Debug\net8.0\Vault.Core.AssemblyInfo.cs
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Core\obj\Debug\net8.0\Vault.Core.csproj.CoreCompileInputs.cache
+C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Core\obj\Debug\net8.0\Vault.Core.sourcelink.json
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Core\obj\Debug\net8.0\Vault.Core.dll
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Core\obj\Debug\net8.0\refint\Vault.Core.dll
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Core\obj\Debug\net8.0\Vault.Core.pdb

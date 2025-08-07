@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Vault.Web",
   "resources": {
-    "hash": "sha256-kEYWdCUufqUBP/obILtToO5w/6BKLYe2ZiEZLa45Iqo=",
+    "hash": "sha256-DvkMxugHN9xEHc7Ws8EHLvJfMTGWWKra3llhU02mJr4=",
     "jsModuleNative": {
       "dotnet.native.8.0.19.mujvnazq18.js": "sha256-O/NCYcAN9uPocD7ns7AzF/cqx7f5vL1PTJCQs0vEXyk="
     },
@@ -210,16 +210,20 @@
       "mscorlib.wasm": "sha256-RLW/7NVuhoPfq151II3kX2kWHgBwQgpCw9aemQNg3to=",
       "netstandard.wasm": "sha256-lAg5WvTiA8wbsIwlr51xh0YWpXT9F5EX3Cnv+11O/mU=",
       "System.Private.CoreLib.wasm": "sha256-3O3muuRQwoLRecYRjfIFWUURvTjP4EmD2O8wYg2UDNY=",
-      "Vault.Core.wasm": "sha256-iP66IbDaPRtrb8SE4k6u+vTNC9bB7uKRi8b76GT/sdA=",
-      "Vault.Web.wasm": "sha256-qDEvzf6CwxURNwYd1kyLwZsg03Dx7NHWuo42pEQy0zY="
+      "Vault.Core.wasm": "sha256-r3YQx3oIaFaPnTzEw9T4I6JRteamq7chVv/ns1CP9+U=",
+      "Vault.Web.wasm": "sha256-CmiXL2mIudJoRsgzjGo8uwcPbxmvNx7SxWk2d4EmLpU="
     },
     "pdb": {
-      "Vault.Core.pdb": "sha256-xDIKBsJqZX4M7YftRUz37BKg+RIYal0TiqIYg+SLPDo=",
-      "Vault.Web.pdb": "sha256-meK2nJiLM1FD+Gl27/yS7CutUza0MMz0ecjqbMgoSJ4="
+      "Vault.Core.pdb": "sha256-1DHbhduNqy5dhqwKw0hSTDUG91sVvIlU+9sjoajS2fw=",
+      "Vault.Web.pdb": "sha256-afF2gWx4+gnmEZr8azNan++KUQeYlsa7Zk0G33AaL0s="
     }
   },
   "cacheBootResources": true,
   "debugLevel": -1,
+  "appsettings": [
+    "../appsettings.json",
+    "../appsettings.Production.json"
+  ],
   "globalizationMode": "sharded",
   "extensions": {
     "blazor": {}

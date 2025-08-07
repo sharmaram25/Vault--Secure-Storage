@@ -1,5 +1,6 @@
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\appsettings.json
+C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\appsettings.Production.json
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\Vault.API.exe
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\Vault.API.deps.json
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\Vault.API.runtimeconfig.json
@@ -29,6 +30,8 @@ C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\Mi
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\Npgsql.dll
+C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\SQLitePCLRaw.core.dll
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\bin\Debug\net8.0\SQLitePCLRaw.provider.e_sqlite3.dll
@@ -73,6 +76,7 @@ C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\obj\Debug\net8.0\Va
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\obj\Debug\net8.0\Vault.API.csproj.CoreCompileInputs.cache
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\obj\Debug\net8.0\Vault.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\obj\Debug\net8.0\Vault.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\obj\Debug\net8.0\Vault.API.sourcelink.json
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.API\obj\Debug\net8.0\staticwebassets\msbuild.Vault.API.Microsoft.AspNetCore.StaticWebAssets.props

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 using System.Text;
 using Vault.API.Services;
 using Vault.Core.Interfaces;
@@ -10,6 +11,10 @@ using Vault.Infrastructure.Data;
 using Vault.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure port for Railway deployment
+var railwayPort = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://0.0.0.0:{railwayPort}");
 
 // Add services to the container.
 builder.Services.AddControllers();

@@ -7,9 +7,10 @@ build:
     - "**/*.cs"
     - "**/*.csproj"
 start:
-  command: dotnet /app/Vault.API.dll
+  command: dotnet /app/Vault.API.dll --urls http://0.0.0.0:$PORT
 healthcheck:
   command: curl -f http://localhost:$PORT/health || exit 1
   interval: 30s
   timeout: 10s
-  retries: 3
+  retries: 5
+  start_period: 60s
