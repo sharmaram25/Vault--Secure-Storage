@@ -150,10 +150,18 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 // Ensure database is created
-using (var scope = app.Services.CreateScope())
+try
 {
-    var context = scope.ServiceProvider.GetRequiredService<VaultDbContext>();
-    context.Database.EnsureCreated();
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<VaultDbContext>();
+        context.Database.EnsureCreated();
+    }
+}
+catch (Exception ex)
+{
+    // Log the error but don't prevent the app from starting
+    Console.WriteLine($"Database initialization error: {ex.Message}");
 }
 
 // Configure the HTTP request pipeline.
@@ -172,14 +180,31 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Health check endpoint
-app.MapGet("/health", () => 
+app.MapGet("/health", async (VaultDbContext context) => 
 {
-    return Results.Ok(new { 
-        status = "healthy", 
-        timestamp = DateTime.UtcNow,
-        version = "1.0.0",
-        environment = app.Environment.EnvironmentName
-    });
+    try 
+    {
+        // Test database connectivity
+        await context.Database.CanConnectAsync();
+        return Results.Ok(new { 
+            status = "healthy", 
+            timestamp = DateTime.UtcNow,
+            version = "1.0.0",
+            environment = app.Environment.EnvironmentName,
+            database = "connected"
+        });
+    }
+    catch (Exception ex)
+    {
+        return Results.Json(new { 
+            status = "unhealthy", 
+            timestamp = DateTime.UtcNow,
+            version = "1.0.0",
+            environment = app.Environment.EnvironmentName,
+            database = "disconnected",
+            error = ex.Message
+        }, statusCode: 503);
+    }
 });
 
 app.MapControllers();

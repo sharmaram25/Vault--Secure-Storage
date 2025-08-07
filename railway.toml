@@ -1,7 +1,3 @@
+# Railway will auto-detect .NET and use Dockerfile
 [build]
 nixpacksVersion = "1.15.0"
-
-[deploy]
-startCommand = "dotnet Vault.API.dll"
-healthcheckPath = "/health"
-healthcheckTimeout = 300
