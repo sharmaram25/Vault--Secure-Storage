@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text;
 
 namespace Vault.Web.Services;
@@ -76,26 +77,52 @@ public class SupabaseApiService
             data = userData ?? new { }
         };
 
-        var json = JsonSerializer.Serialize(data, _jsonOptions);
+        // Use snake_case for Supabase API
+        var authJsonOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+            WriteIndented = false
+        };
+        
+        var json = JsonSerializer.Serialize(data, authJsonOptions);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         
-        var response = await _httpClient.PostAsync($"{_supabaseUrl}/auth/v1/signup", content);
+        // Create a separate HttpClient for auth requests to avoid header conflicts
+        using var authClient = new HttpClient();
+        authClient.DefaultRequestHeaders.Add("apikey", _supabaseKey);
+        
+        var response = await authClient.PostAsync($"{_supabaseUrl}/auth/v1/signup", content);
         
         var responseJson = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<AuthResponse>(responseJson, _jsonOptions);
+        return JsonSerializer.Deserialize<AuthResponse>(responseJson, authJsonOptions);
     }
 
     public async Task<AuthResponse?> SignInAsync(string email, string password)
     {
-        var data = new { email, password };
+        var data = new { 
+            email, 
+            password,
+            grant_type = "password"
+        };
         
-        var json = JsonSerializer.Serialize(data, _jsonOptions);
+        // Use snake_case for Supabase API
+        var authJsonOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+            WriteIndented = false
+        };
+        
+        var json = JsonSerializer.Serialize(data, authJsonOptions);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         
-        var response = await _httpClient.PostAsync($"{_supabaseUrl}/auth/v1/token?grant_type=password", content);
+        // Create a separate HttpClient for auth requests to avoid header conflicts
+        using var authClient = new HttpClient();
+        authClient.DefaultRequestHeaders.Add("apikey", _supabaseKey);
+        
+        var response = await authClient.PostAsync($"{_supabaseUrl}/auth/v1/token", content);
         
         var responseJson = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<AuthResponse>(responseJson, _jsonOptions);
+        return JsonSerializer.Deserialize<AuthResponse>(responseJson, authJsonOptions);
     }
 
     public void SetAuthToken(string token)
@@ -107,18 +134,36 @@ public class SupabaseApiService
 
 public class AuthResponse
 {
+    [JsonPropertyName("access_token")]
     public string? AccessToken { get; set; }
+    
+    [JsonPropertyName("refresh_token")]
     public string? RefreshToken { get; set; }
+    
+    [JsonPropertyName("expires_in")]
     public int ExpiresIn { get; set; }
+    
+    [JsonPropertyName("user")]
     public User? User { get; set; }
+    
+    [JsonPropertyName("error")]
     public string? Error { get; set; }
+    
+    [JsonPropertyName("error_description")]
     public string? ErrorDescription { get; set; }
 }
 
 public class User
 {
+    [JsonPropertyName("id")]
     public string? Id { get; set; }
+    
+    [JsonPropertyName("email")]
     public string? Email { get; set; }
+    
+    [JsonPropertyName("created_at")]
     public DateTime CreatedAt { get; set; }
+    
+    [JsonPropertyName("updated_at")]
     public DateTime UpdatedAt { get; set; }
 }

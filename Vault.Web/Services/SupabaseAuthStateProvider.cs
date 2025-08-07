@@ -59,6 +59,19 @@ public class SupabaseAuthStateProvider : AuthenticationStateProvider
         {
             var response = await _supabaseService.SignInAsync(email, password);
             
+            // Temporary debugging
+            if (response == null)
+            {
+                await _jsRuntime.InvokeVoidAsync("console.log", "No response from Supabase");
+                return false;
+            }
+            
+            if (!string.IsNullOrEmpty(response.Error))
+            {
+                await _jsRuntime.InvokeVoidAsync("console.log", $"Supabase error: {response.Error} - {response.ErrorDescription}");
+                return false;
+            }
+            
             if (response?.AccessToken != null && response.User != null)
             {
                 // Store token in localStorage
@@ -80,10 +93,12 @@ public class SupabaseAuthStateProvider : AuthenticationStateProvider
                 return true;
             }
             
+            await _jsRuntime.InvokeVoidAsync("console.log", "AccessToken or User is null");
             return false;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            await _jsRuntime.InvokeVoidAsync("console.log", $"Login exception: {ex.Message}");
             return false;
         }
     }
