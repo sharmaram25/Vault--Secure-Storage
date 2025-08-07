@@ -50,9 +50,31 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Database configuration
-builder.Services.AddDbContext<VaultDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? 
-                     "Data Source=vault.db"));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+if (!string.IsNullOrEmpty(databaseUrl))
+{
+    // Parse Supabase/PostgreSQL connection string
+    var uri = new Uri(databaseUrl);
+    var host = uri.Host;
+    var port = uri.Port;
+    var database = uri.AbsolutePath.Trim('/');
+    var userInfo = uri.UserInfo.Split(':');
+    var username = userInfo[0];
+    var password = userInfo.Length > 1 ? userInfo[1] : "";
+    
+    connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+    
+    builder.Services.AddDbContext<VaultDbContext>(options =>
+        options.UseNpgsql(connectionString));
+}
+else
+{
+    // Use SQLite for local development
+    builder.Services.AddDbContext<VaultDbContext>(options =>
+        options.UseSqlite(connectionString ?? "Data Source=vault.db"));
+}
 
 // Repository registration
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -102,7 +124,11 @@ builder.Services.AddCors(options =>
                 "http://localhost:5173", 
                 "https://localhost:7275",
                 "https://vault-secure-storage.onrender.com",
-                "https://vault-api.onrender.com"
+                "https://vault-api.onrender.com",
+                "https://*.up.railway.app",
+                "https://*.netlify.app",
+                "https://*.vercel.app",
+                "https://*.azurestaticapps.net"
             };
             
         policy.WithOrigins(allowedOrigins)
@@ -157,3 +183,6 @@ app.MapControllers();
 app.MapFallbackToFile("index.html");
 
 app.Run();
+
+// Make Program class accessible for integration tests
+public partial class Program { }
