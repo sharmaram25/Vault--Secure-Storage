@@ -1,16 +1,7 @@
-version: 2
-build:
-  commands:
-    - dotnet restore
-    - dotnet publish Vault.API -c Release -o /app
-  watch:
-    - "**/*.cs"
-    - "**/*.csproj"
-start:
-  command: dotnet /app/Vault.API.dll --urls http://0.0.0.0:$PORT
-healthcheck:
-  command: curl -f http://localhost:$PORT/health || exit 1
-  interval: 30s
-  timeout: 10s
-  retries: 5
-  start_period: 60s
+[build]
+nixpacksVersion = "1.15.0"
+
+[deploy]
+startCommand = "dotnet Vault.API.dll"
+healthcheckPath = "/health"
+healthcheckTimeout = 300
