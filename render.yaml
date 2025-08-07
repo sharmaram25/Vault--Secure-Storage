@@ -1,0 +1,41 @@
+# render.yaml - Render deployment configuration
+
+services:
+  - type: web
+    name: vault-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    branch: master
+    healthCheckPath: /health
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://+:10000
+      - key: VAULT_JWT_SECRET
+        generateValue: true
+      - key: VAULT_DB_CONNECTION
+        value: Data Source=/app/data/vault.db
+      - key: AllowedOrigins
+        value: https://vault-secure-storage.onrender.com
+      - key: Jwt__SecretKey
+        generateValue: true
+      - key: Jwt__Issuer
+        value: VaultAPI
+      - key: Jwt__Audience
+        value: VaultWeb
+      - key: Jwt__ExpirationMinutes
+        value: 60
+    buildFilter:
+      paths:
+        - Vault.API/**
+        - Vault.Core/**
+        - Vault.Infrastructure/**
+        - Vault.Web/**
+        - Dockerfile
+    disk:
+      name: vault-data
+      mountPath: /app/data
+      sizeGB: 1

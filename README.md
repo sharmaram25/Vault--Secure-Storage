@@ -11,7 +11,7 @@
 
 *A state-of-the-art, military-grade encrypted vault for your most sensitive digital assets*
 
-[Live Demo](#-quick-start) • [Features](#-key-features) • [Security](#-security-architecture) • [Documentation](#-api-documentation)
+[Live Demo](https://vault-secure-storage.onrender.com) • [Features](#-key-features) • [Security](#-security-architecture) • [Documentation](#-api-documentation) • [Deploy](#-deployment)
 
 </div>
 
@@ -213,6 +213,41 @@ public class AESEncryptionService : IEncryptionService
     }
 }
 ```
+
+---
+
+## 🚀 Deployment
+
+This application is ready for production deployment on multiple platforms:
+
+### 🌐 Live Demo
+🔗 **[Try Vault Live](https://vault-secure-storage.onrender.com)** - Experience the full application deployed on Render
+
+### 🐳 One-Click Deployments
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/sharmaram25/Vault--Secure-Storage)
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/vault-secure-storage)
+
+### 🛠️ Supported Platforms
+
+| Platform | Status | Features |
+|----------|---------|----------|
+| **🌐 Render** | ✅ Ready | Free tier, Auto-scaling, Global CDN |
+| **🚄 Railway** | ✅ Ready | $5/month, Fast deployment, Auto HTTPS |
+| **☁️ Azure App Service** | ✅ Ready | Enterprise-grade, Custom domains |
+| **🐳 Docker** | ✅ Ready | Self-hosted, Full control |
+| **🔧 Local** | ✅ Ready | Development & testing |
+
+### 📋 Quick Deploy Steps
+
+1. **Fork this repository** to your GitHub account
+2. **Choose a platform** from the options above
+3. **Connect your GitHub** repository to the platform
+4. **Set environment variables** (JWT secret key required)
+5. **Deploy** and enjoy your secure vault!
+
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ---
 

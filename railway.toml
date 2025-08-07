@@ -1,0 +1,31 @@
+# railway.toml - Railway deployment configuration
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 100
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+[[deploy.envVars]]
+name = "ASPNETCORE_ENVIRONMENT"
+value = "Production"
+
+[[deploy.envVars]]
+name = "ASPNETCORE_URLS"
+value = "http://+:$PORT"
+
+[[deploy.envVars]]
+name = "Jwt__Issuer"
+value = "VaultAPI"
+
+[[deploy.envVars]]
+name = "Jwt__Audience"
+value = "VaultWeb"
+
+[[deploy.envVars]]
+name = "Jwt__ExpirationMinutes"
+value = "60"

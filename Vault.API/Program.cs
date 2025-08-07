@@ -94,7 +94,18 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowBlazorWasm", policy =>
     {
-        policy.WithOrigins("https://localhost:5001", "http://localhost:5000", "http://localhost:5102", "http://localhost:5173", "https://localhost:7275")
+        var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() 
+            ?? new[] { 
+                "https://localhost:5001", 
+                "http://localhost:5000", 
+                "http://localhost:5102", 
+                "http://localhost:5173", 
+                "https://localhost:7275",
+                "https://vault-secure-storage.onrender.com",
+                "https://vault-api.onrender.com"
+            };
+            
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -102,6 +113,10 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// Configure static files to serve Blazor WebAssembly
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 // Ensure database is created
 using (var scope = app.Services.CreateScope())
@@ -124,6 +139,21 @@ app.UseHttpsRedirection();
 app.UseCors("AllowBlazorWasm");
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Health check endpoint
+app.MapGet("/health", () => 
+{
+    return Results.Ok(new { 
+        status = "healthy", 
+        timestamp = DateTime.UtcNow,
+        version = "1.0.0",
+        environment = app.Environment.EnvironmentName
+    });
+});
+
 app.MapControllers();
+
+// Fallback routing for Blazor WebAssembly SPA
+app.MapFallbackToFile("index.html");
 
 app.Run();
