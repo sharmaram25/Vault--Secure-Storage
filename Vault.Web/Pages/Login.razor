@@ -1,5 +1,6 @@
 @page "/login"
 @attribute [AllowAnonymous]
+@inject VaultAuthenticationService AuthService
 @inject NavigationManager Navigation
 
 <PageTitle>Vault - Login</PageTitle>
@@ -35,9 +36,9 @@
                             
                             <div class="mb-4">
                                 <label for="username" class="form-label text-light">
-                                    <i class="bi bi-person me-2"></i>Username
+                                    <i class="bi bi-envelope me-2"></i>Email
                                 </label>
-                                <InputText @bind-Value="loginModel.Username" class="form-control form-control-lg bg-secondary border-0 text-light" id="username" placeholder="Enter your username" />
+                                <InputText @bind-Value="loginModel.Username" class="form-control form-control-lg bg-secondary border-0 text-light" id="username" placeholder="Enter your email" />
                                 <ValidationMessage For="@(() => loginModel.Username)" class="text-danger small" />
                             </div>
 
@@ -144,9 +145,15 @@
             isLoading = true;
             errorMessage = null;
 
-            // Temporary: Just redirect to home for demo
-            await Task.Delay(1000); // Simulate login
-            Navigation.NavigateTo("/");
+            var success = await AuthService.LoginAsync(loginModel);
+            if (success)
+            {
+                Navigation.NavigateTo("/");
+            }
+            else
+            {
+                errorMessage = "Login failed. Please check your email and password.";
+            }
         }
         catch (Exception ex)
         {

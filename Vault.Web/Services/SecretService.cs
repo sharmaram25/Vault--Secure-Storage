@@ -1,26 +1,33 @@
-using System.Net.Http.Json;
 using Vault.Core.DTOs;
 
 namespace Vault.Web.Services;
 
 public class SecretService
 {
-    private readonly HttpClient _httpClient;
+    private readonly SupabaseApiService _supabaseService;
 
-    public SecretService(HttpClient httpClient)
+    public SecretService(SupabaseApiService supabaseService)
     {
-        _httpClient = httpClient;
+        _supabaseService = supabaseService;
     }
 
     public async Task<IEnumerable<SecretListDto>?> GetSecretsAsync()
     {
         try
         {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<SecretListDto>>("api/secrets");
+            var secrets = await _supabaseService.GetAsync<List<SupabaseSecret>>("secrets?select=id,title,created_at,updated_at");
+            
+            return secrets?.Select(s => new SecretListDto
+            {
+                Id = int.Parse(s.Id ?? "0"),
+                Title = s.Title ?? "",
+                CreatedAt = s.CreatedAt,
+                UpdatedAt = s.UpdatedAt
+            });
         }
         catch
         {
-            return null;
+            return new List<SecretListDto>();
         }
     }
 
@@ -28,7 +35,22 @@ public class SecretService
     {
         try
         {
-            return await _httpClient.GetFromJsonAsync<SecretDto>($"api/secrets/{id}");
+            var secrets = await _supabaseService.GetAsync<List<SupabaseSecret>>($"secrets?id=eq.{id}&select=*");
+            var secret = secrets?.FirstOrDefault();
+            
+            if (secret != null)
+            {
+                return new SecretDto
+                {
+                    Id = int.Parse(secret.Id ?? "0"),
+                    Title = secret.Title ?? "",
+                    Content = secret.Content ?? "",
+                    CreatedAt = secret.CreatedAt,
+                    UpdatedAt = secret.UpdatedAt
+                };
+            }
+            
+            return null;
         }
         catch
         {
@@ -36,15 +58,31 @@ public class SecretService
         }
     }
 
-    public async Task<SecretListDto?> CreateSecretAsync(CreateSecretDto createSecretDto)
+    public async Task<SecretListDto?> CreateSecretAsync(CreateSecretDto secretDto)
     {
         try
         {
-            var response = await _httpClient.PostAsJsonAsync("api/secrets", createSecretDto);
-            if (response.IsSuccessStatusCode)
+            var supabaseSecret = new
             {
-                return await response.Content.ReadFromJsonAsync<SecretListDto>();
+                title = secretDto.Title,
+                content = secretDto.Content,
+                secret_type = "note"
+            };
+
+            var result = await _supabaseService.PostAsync<List<SupabaseSecret>>("secrets", supabaseSecret);
+            var createdSecret = result?.FirstOrDefault();
+            
+            if (createdSecret != null)
+            {
+                return new SecretListDto
+                {
+                    Id = int.Parse(createdSecret.Id ?? "0"),
+                    Title = createdSecret.Title ?? "",
+                    CreatedAt = createdSecret.CreatedAt,
+                    UpdatedAt = createdSecret.UpdatedAt
+                };
             }
+            
             return null;
         }
         catch
@@ -53,15 +91,31 @@ public class SecretService
         }
     }
 
-    public async Task<SecretListDto?> UpdateSecretAsync(int id, UpdateSecretDto updateSecretDto)
+    public async Task<SecretListDto?> UpdateSecretAsync(int id, UpdateSecretDto secretDto)
     {
         try
         {
-            var response = await _httpClient.PutAsJsonAsync($"api/secrets/{id}", updateSecretDto);
-            if (response.IsSuccessStatusCode)
+            var supabaseSecret = new
             {
-                return await response.Content.ReadFromJsonAsync<SecretListDto>();
+                title = secretDto.Title,
+                content = secretDto.Content,
+                secret_type = "note"
+            };
+
+            var result = await _supabaseService.PutAsync<List<SupabaseSecret>>($"secrets?id=eq.{id}", supabaseSecret);
+            var updatedSecret = result?.FirstOrDefault();
+            
+            if (updatedSecret != null)
+            {
+                return new SecretListDto
+                {
+                    Id = int.Parse(updatedSecret.Id ?? "0"),
+                    Title = updatedSecret.Title ?? "",
+                    CreatedAt = updatedSecret.CreatedAt,
+                    UpdatedAt = updatedSecret.UpdatedAt
+                };
             }
+            
             return null;
         }
         catch
@@ -74,12 +128,23 @@ public class SecretService
     {
         try
         {
-            var response = await _httpClient.DeleteAsync($"api/secrets/{id}");
-            return response.IsSuccessStatusCode;
+            await _supabaseService.DeleteAsync($"secrets?id=eq.{id}");
+            return true;
         }
         catch
         {
             return false;
         }
     }
+}
+
+// Supabase response models
+public class SupabaseSecret
+{
+    public string? Id { get; set; }
+    public string? Title { get; set; }
+    public string? Content { get; set; }
+    public string? SecretType { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
 }
