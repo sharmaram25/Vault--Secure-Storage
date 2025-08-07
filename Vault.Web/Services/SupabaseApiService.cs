@@ -13,8 +13,8 @@ public class SupabaseApiService
     public SupabaseApiService(HttpClient httpClient, IConfiguration configuration)
     {
         _httpClient = httpClient;
-        _supabaseUrl = configuration["Supabase:Url"] ?? "";
-        _supabaseKey = configuration["Supabase:AnonKey"] ?? "";
+        _supabaseUrl = configuration["Supabase:Url"] ?? "https://obiyobfujaymoovwdfhg.supabase.co";
+        _supabaseKey = configuration["Supabase:AnonKey"] ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9iaXlvYmZ1amF5bW9vdndkZmhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ1NTU3NjcsImV4cCI6MjA3MDEzMTc2N30.cEvCm-qe_RNDxVBbswI73dXVMfQgW9SitDKjcSoHwKU";
         
         _jsonOptions = new JsonSerializerOptions
         {

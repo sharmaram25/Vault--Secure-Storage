@@ -82,9 +82,8 @@ public class SupabaseAuthStateProvider : AuthenticationStateProvider
             
             return false;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Login error: {ex.Message}");
             return false;
         }
     }
@@ -108,9 +107,8 @@ public class SupabaseAuthStateProvider : AuthenticationStateProvider
             
             return false;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Registration error: {ex.Message}");
             return false;
         }
     }
@@ -125,9 +123,9 @@ public class SupabaseAuthStateProvider : AuthenticationStateProvider
             _currentUser = new ClaimsPrincipal(new ClaimsIdentity());
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Logout error: {ex.Message}");
+            // Silent logout on error
         }
     }
 
