@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Vault.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6812073a2e67fe6e3217ad1b96c685ae4e23217")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06046a5ccc55a8ea9b8f1a7429cce88a8310bca1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Vault.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Vault.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

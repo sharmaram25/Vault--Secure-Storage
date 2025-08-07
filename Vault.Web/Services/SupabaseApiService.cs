@@ -77,14 +77,10 @@ public class SupabaseApiService
             data = userData ?? new { }
         };
 
-        // Use snake_case for Supabase API
-        var authJsonOptions = new JsonSerializerOptions
+        var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
         {
-            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
-            WriteIndented = false
-        };
-        
-        var json = JsonSerializer.Serialize(data, authJsonOptions);
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        });
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         
         // Create a separate HttpClient for auth requests to avoid header conflicts
@@ -94,35 +90,57 @@ public class SupabaseApiService
         var response = await authClient.PostAsync($"{_supabaseUrl}/auth/v1/signup", content);
         
         var responseJson = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<AuthResponse>(responseJson, authJsonOptions);
+        
+        if (response.IsSuccessStatusCode)
+        {
+            return JsonSerializer.Deserialize<AuthResponse>(responseJson, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+        }
+        
+        return new AuthResponse 
+        { 
+            Error = $"HTTP {response.StatusCode}", 
+            ErrorDescription = responseJson 
+        };
     }
 
     public async Task<AuthResponse?> SignInAsync(string email, string password)
     {
         var data = new { 
             email, 
-            password,
-            grant_type = "password"
+            password
         };
         
-        // Use snake_case for Supabase API
-        var authJsonOptions = new JsonSerializerOptions
+        // Use the correct JSON serialization for Supabase
+        var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
         {
-            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
-            WriteIndented = false
-        };
-        
-        var json = JsonSerializer.Serialize(data, authJsonOptions);
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        });
         var content = new StringContent(json, Encoding.UTF8, "application/json");
         
         // Create a separate HttpClient for auth requests to avoid header conflicts
         using var authClient = new HttpClient();
         authClient.DefaultRequestHeaders.Add("apikey", _supabaseKey);
         
-        var response = await authClient.PostAsync($"{_supabaseUrl}/auth/v1/token", content);
+        var response = await authClient.PostAsync($"{_supabaseUrl}/auth/v1/signin", content);
         
         var responseJson = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<AuthResponse>(responseJson, authJsonOptions);
+        
+        if (response.IsSuccessStatusCode)
+        {
+            return JsonSerializer.Deserialize<AuthResponse>(responseJson, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+        }
+        
+        return new AuthResponse 
+        { 
+            Error = $"HTTP {response.StatusCode}", 
+            ErrorDescription = responseJson 
+        };
     }
 
     public void SetAuthToken(string token)

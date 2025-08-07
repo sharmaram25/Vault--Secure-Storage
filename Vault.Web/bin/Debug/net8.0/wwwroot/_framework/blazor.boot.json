@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Vault.Web",
   "resources": {
-    "hash": "sha256-70za/X8pE2GwQsf42NWm2csQNnsI+ekP/ua33OtHCmY=",
+    "hash": "sha256-lU3dEhzDL5M/ZHn/He0xzzRbaEP3ZsFuDMZPNABd4LY=",
     "jsModuleNative": {
       "dotnet.native.8.0.19.mujvnazq18.js": "sha256-O/NCYcAN9uPocD7ns7AzF/cqx7f5vL1PTJCQs0vEXyk="
     },
@@ -210,12 +210,12 @@
       "mscorlib.wasm": "sha256-RLW/7NVuhoPfq151II3kX2kWHgBwQgpCw9aemQNg3to=",
       "netstandard.wasm": "sha256-lAg5WvTiA8wbsIwlr51xh0YWpXT9F5EX3Cnv+11O/mU=",
       "System.Private.CoreLib.wasm": "sha256-3O3muuRQwoLRecYRjfIFWUURvTjP4EmD2O8wYg2UDNY=",
-      "Vault.Core.wasm": "sha256-9/gG3BfmBBkz5jALZavUVf20Q43t6b0/OG1UjRhRNks=",
-      "Vault.Web.wasm": "sha256-VgWzVQrAwuoQ3DG+pKPWwJ8Hd+WtLSYeAhYJfbShhu4="
+      "Vault.Core.wasm": "sha256-//5OtSwzPc211g1X3V1pG+8sSQVRZlWtvE4+Kt00aQU=",
+      "Vault.Web.wasm": "sha256-g4T6osuI41K7F5Cifl+RoB7kPjTxEnqtLhtRjU7+nWI="
     },
     "pdb": {
-      "Vault.Core.pdb": "sha256-ueWEN3jr8VZvE/xdgrRla6m7BMJIYYO3+k5yssvctak=",
-      "Vault.Web.pdb": "sha256-v6JXgl9fQ7I7vo9H6WlriRqG0IH0vRN9iMm7AG3Jj6U="
+      "Vault.Core.pdb": "sha256-6FoUqP8ngHsPjVtEjhq4N8/E8gOFs/GAggajOcwun/U=",
+      "Vault.Web.pdb": "sha256-ldWY0mEqEGIksBCdC8RhOT/ugZIFT4krZYC8tvQh+/A="
     }
   },
   "cacheBootResources": true,

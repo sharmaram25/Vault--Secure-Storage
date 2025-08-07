@@ -68,7 +68,8 @@ public class SupabaseAuthStateProvider : AuthenticationStateProvider
             
             if (!string.IsNullOrEmpty(response.Error))
             {
-                await _jsRuntime.InvokeVoidAsync("console.log", $"Supabase error: {response.Error} - {response.ErrorDescription}");
+                await _jsRuntime.InvokeVoidAsync("console.log", $"Supabase error: {response.Error}");
+                await _jsRuntime.InvokeVoidAsync("console.log", $"Supabase error description: {response.ErrorDescription}");
                 return false;
             }
             
