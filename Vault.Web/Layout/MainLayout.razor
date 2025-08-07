@@ -1,0 +1,121 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page bg-dark text-light min-vh-100">
+    <AuthorizeView>
+        <Authorized>
+            <!-- Top Navigation Bar -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-gradient position-fixed w-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); z-index: 1000; top: 0;">
+                <div class="container-fluid">
+                    <!-- Mobile Menu Toggle -->
+                    <button class="navbar-toggler d-lg-none" type="button" @onclick="ToggleSidebar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <a class="navbar-brand fw-bold" href="/">
+                        🔐 Vault
+                    </a>
+                    
+                    <div class="navbar-nav ms-auto">
+                        <button class="btn btn-outline-light btn-sm" @onclick="Logout">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span class="d-none d-md-inline ms-1">Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="d-flex" style="margin-top: 56px;">
+                <!-- Sidebar -->
+                <nav class="sidebar @SidebarCssClass bg-gradient shadow-lg" style="background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);">
+                    <div class="sidebar-content p-3">
+                        <div class="sidebar-header mb-4 d-none d-lg-block">
+                            <h6 class="text-light mb-0 fw-bold">
+                                <i class="bi bi-grid-3x3-gap-fill me-2"></i>
+                                Navigation
+                            </h6>
+                        </div>
+                        
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2">
+                                <a class="nav-link text-light d-flex align-items-center px-3 py-2 rounded sidebar-link" href="/" @onclick="CloseSidebarOnMobile">
+                                    <i class="bi bi-house-door-fill me-3"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link text-light d-flex align-items-center px-3 py-2 rounded sidebar-link" href="/secret/new" @onclick="CloseSidebarOnMobile">
+                                    <i class="bi bi-plus-circle-fill me-3"></i>
+                                    <span>Add Secret</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link text-light d-flex align-items-center px-3 py-2 rounded sidebar-link" href="/profile" @onclick="CloseSidebarOnMobile">
+                                    <i class="bi bi-person-circle me-3"></i>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-4 pt-3 border-top border-secondary d-none d-lg-block">
+                            <div class="text-muted small">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Vault v1.0
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Overlay for mobile sidebar -->
+                <div class="sidebar-overlay @OverlayCssClass" @onclick="CloseSidebar"></div>
+                
+                <!-- Main Content -->
+                <main class="flex-grow-1 bg-dark main-content">
+                    <div class="container-fluid py-3 py-md-4">
+                        @Body
+                    </div>
+                </main>
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            @Body
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
+
+@code {
+    [Inject] private VaultAuthenticationService? AuthService { get; set; }
+    [Inject] private NavigationManager? Navigation { get; set; }
+    
+    private bool sidebarOpen = false;
+    
+    private string SidebarCssClass => sidebarOpen ? "show" : "";
+    private string OverlayCssClass => sidebarOpen ? "show" : "";
+
+    private void ToggleSidebar()
+    {
+        sidebarOpen = !sidebarOpen;
+    }
+    
+    private void CloseSidebar()
+    {
+        sidebarOpen = false;
+    }
+    
+    private void CloseSidebarOnMobile()
+    {
+        // Close sidebar on mobile when a link is clicked
+        if (sidebarOpen)
+        {
+            sidebarOpen = false;
+        }
+    }
+
+    private async Task Logout()
+    {
+        if (AuthService != null && Navigation != null)
+        {
+            await AuthService.LogoutAsync();
+            Navigation.NavigateTo("/login");
+        }
+    }
+}

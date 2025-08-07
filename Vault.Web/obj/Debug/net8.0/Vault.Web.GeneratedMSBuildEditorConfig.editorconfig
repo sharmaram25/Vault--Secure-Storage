@@ -1,0 +1,67 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = Vault.Web
+build_property.RootNamespace = Vault.Web
+build_property.ProjectDir = C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\sharm\OneDrive\Desktop\Web Projects\Vault\Vault.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/Pages/Profile.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/Pages/RedirectToLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVkaXJlY3RUb0xvZ2luLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-yl032fj7ug
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-opv4n7j486
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-29xc933v7c
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/Pages/SecretForm.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VjcmV0Rm9ybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-xu8lols6ns
+
+[C:/Users/sharm/OneDrive/Desktop/Web Projects/Vault/Vault.Web/Pages/SecretView.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VjcmV0Vmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ry6efniqov

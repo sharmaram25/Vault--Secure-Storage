@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "IiXEtzoYSPUXNvvA20ASbpz+Pc9Lvmh8r29iXjOuTXE=",
+  "Source": "Vault.API",
+  "BasePath": "_content/Vault.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
