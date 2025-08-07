@@ -1,6 +1,5 @@
 @page "/login"
 @attribute [AllowAnonymous]
-@inject VaultAuthenticationService AuthService
 @inject NavigationManager Navigation
 
 <PageTitle>Vault - Login</PageTitle>
@@ -145,15 +144,9 @@
             isLoading = true;
             errorMessage = null;
 
-            var success = await AuthService.LoginAsync(loginModel);
-            if (success)
-            {
-                Navigation.NavigateTo("/");
-            }
-            else
-            {
-                errorMessage = "Login failed. Please check your credentials and try again.";
-            }
+            // Temporary: Just redirect to home for demo
+            await Task.Delay(1000); // Simulate login
+            Navigation.NavigateTo("/");
         }
         catch (Exception ex)
         {

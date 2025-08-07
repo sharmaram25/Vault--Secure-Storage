@@ -14,9 +14,8 @@ builder.Services.AddScoped(sp => new HttpClient());
 // Add Supabase service
 builder.Services.AddScoped<SupabaseApiService>();
 
-// Add authentication services (we'll update these to use Supabase)
-builder.Services.AddScoped<AuthenticationStateProvider, VaultAuthenticationStateProvider>();
-builder.Services.AddScoped<VaultAuthenticationService>();
+// Add authentication services (temporary mock for deployment)
+builder.Services.AddScoped<AuthenticationStateProvider, MockAuthenticationStateProvider>();
 builder.Services.AddScoped<SecretService>();
 
 // Add authorization
