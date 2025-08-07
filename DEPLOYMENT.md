@@ -45,18 +45,31 @@ Add these environment variables in Render dashboard:
 ```
 ASPNETCORE_ENVIRONMENT=Production
 ASPNETCORE_URLS=http://+:10000
-Jwt__SecretKey=[Generate a secure 256-bit key]
+Jwt__SecretKey=PoDnC1KxkIRNlwPllGqIO3k/1Gxru3JDXYF3flPtVaY=
 Jwt__Issuer=VaultAPI
 Jwt__Audience=VaultWeb
 Jwt__ExpirationMinutes=60
 ```
 
-### Step 4: Add Persistent Storage
+**📝 Note for Free Tier:**
+- Database will be ephemeral (resets on each deployment)
+- Perfect for testing and demos
+- User accounts and secrets will not persist between deployments
+- Upgrade to a paid plan ($7/month) for persistent storage
+
+### Step 4: Storage Options (Free vs Paid)
+
+**For Free Tier:**
+- Skip persistent storage (data will be ephemeral)
+- Database will reset on each deployment
+- Perfect for testing and demo purposes
+
+**For Paid Plans ($7/month and up):**
 1. In your service settings, go to "Disks"
 2. Add a disk:
    - **Name**: vault-data
    - **Mount Path**: /app/data
-   - **Size**: 1GB
+   - **Size**: 1GB+
 
 ## 🚄 Railway Deployment
 

@@ -17,7 +17,7 @@ services:
       - key: VAULT_JWT_SECRET
         generateValue: true
       - key: VAULT_DB_CONNECTION
-        value: Data Source=/app/data/vault.db
+        value: Data Source=/tmp/vault.db
       - key: AllowedOrigins
         value: https://vault-secure-storage.onrender.com
       - key: Jwt__SecretKey
@@ -35,7 +35,5 @@ services:
         - Vault.Infrastructure/**
         - Vault.Web/**
         - Dockerfile
-    disk:
-      name: vault-data
-      mountPath: /app/data
-      sizeGB: 1
+    # Note: Persistent disk is only available on paid plans
+    # For free tier, database will be ephemeral (resets on deployment)

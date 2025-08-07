@@ -45,8 +45,8 @@ RUN apt-get update && apt-get install -y \
 # Copy published application
 COPY --from=build /app/publish .
 
-# Create directory for SQLite database
-RUN mkdir -p /app/data
+# Create directory for SQLite database (works with both persistent and ephemeral storage)
+RUN mkdir -p /app/data /tmp
 
 # Set environment variables
 ENV ASPNETCORE_ENVIRONMENT=Production
