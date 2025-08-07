@@ -4,16 +4,9 @@
 
 [build.environment]
   DOTNET_VERSION = "8.0.x"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
+  ASPNETCORE_ENVIRONMENT = "Production"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[functions]
-  directory = "netlify/functions"

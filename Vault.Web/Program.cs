@@ -8,14 +8,13 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-// Configure HTTP client to point to API
-var apiBaseAddress = builder.Configuration["ApiBaseAddress"] ?? builder.HostEnvironment.BaseAddress;
-builder.Services.AddScoped(sp => new HttpClient 
-{ 
-    BaseAddress = new Uri(apiBaseAddress)
-});
+// Configure HTTP client for Supabase
+builder.Services.AddScoped(sp => new HttpClient());
 
-// Add authentication services
+// Add Supabase service
+builder.Services.AddScoped<SupabaseApiService>();
+
+// Add authentication services (we'll update these to use Supabase)
 builder.Services.AddScoped<AuthenticationStateProvider, VaultAuthenticationStateProvider>();
 builder.Services.AddScoped<VaultAuthenticationService>();
 builder.Services.AddScoped<SecretService>();
