@@ -663,7 +663,7 @@ copies or substantial portions of the Software.
 | 🐛 **Issues** | [GitHub Issues](https://github.com/ramsharma0/vault/issues) | Bug reports & feature requests |
 | 💬 **Discussions** | [GitHub Discussions](https://github.com/ramsharma0/vault/discussions) | Community support & ideas |
 | 📚 **Wiki** | [Project Wiki](https://github.com/sharmaram25/vault/wiki) | Detailed documentation |
-| 📧 **Email** | [ram.sharma@email.com](mailto:sharmaram2504@gail.com) | Direct support |
+| 📧 **Email** | [sharmaram2504@gmail.com](mailto:sharmaram2504@gmail.com) | Direct support |
 
 </div>
 
