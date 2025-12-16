@@ -602,7 +602,7 @@ Have an idea? We'd love to hear it! Please include:
 
 [![GitHub](https://img.shields.io/badge/GitHub-@ramsharma0-181717?style=for-the-badge&logo=github)](https://github.com/ramsharma0)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Ram_Sharma-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/ramsharma0)
-[![Email](https://img.shields.io/badge/Email-Contact_Ram-EA4335?style=for-the-badge&logo=gmail)](mailto:ram.sharma@email.com)
+[![Email](https://img.shields.io/badge/Email-Contact_Ram-EA4335?style=for-the-badge&logo=gmail)](mailto:sharmaram2504@gmail.com)
 
 *"Security is not a product, but a process. Vault embodies this philosophy with enterprise-grade encryption and modern development practices."*
 
@@ -646,7 +646,7 @@ copies or substantial portions of the Software.
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ramsharma0/vault&type=Date)](https://star-history.com/#ramsharma0/vault&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=sharmaram25/vault&type=Date)](https://star-history.com/#sharmaram25/vault&Date)
 
 **If you find this project useful, please consider giving it a ⭐ star on GitHub!**
 
@@ -662,8 +662,8 @@ copies or substantial portions of the Software.
 |----------|------|---------|
 | 🐛 **Issues** | [GitHub Issues](https://github.com/ramsharma0/vault/issues) | Bug reports & feature requests |
 | 💬 **Discussions** | [GitHub Discussions](https://github.com/ramsharma0/vault/discussions) | Community support & ideas |
-| 📚 **Wiki** | [Project Wiki](https://github.com/ramsharma0/vault/wiki) | Detailed documentation |
-| 📧 **Email** | [ram.sharma@email.com](mailto:ram.sharma@email.com) | Direct support |
+| 📚 **Wiki** | [Project Wiki](https://github.com/sharmaram25/vault/wiki) | Detailed documentation |
+| 📧 **Email** | [ram.sharma@email.com](mailto:sharmaram2504@gail.com) | Direct support |
 
 </div>
 
